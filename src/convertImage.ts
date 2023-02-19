@@ -1,28 +1,9 @@
 import fs from "fs";
 import path from "path";
-import sharp, { AvailableFormatInfo } from "sharp";
+import sharp from "sharp";
+import config from "./config";
 
-// const inputDirectory = 'src/_attachments'
-// const outputDirectory = 'public'
-
-// Configuration object with image size, scale, and format options
-const config: Config = {
-  sizes: [1024], // array of image widths to resize to
-  scales: [1, 0.5, 0.25], // array of scales to resize the image by
-  formats: [
-    // sharp.format.png,
-    // sharp.format.jpeg,
-    sharp.format.webp
-  ] // array of image formats to save the resized images as
-};
-
-type Config = {
-  sizes: number[]
-  scales: number[]
-  formats: AvailableFormatInfo[]
-}
-
-const convertImage = (
+const convertImage = async (
   inputFile: string,
   fileName: string,
   outputFolder: string
